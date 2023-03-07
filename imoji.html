@@ -1,0 +1,88 @@
+<html>
+<title>
+this is an imoji</title>
+<head>
+</head>
+<body style="border:90px outset red"><center>
+<canvas id="my" width="500" height="500" style="border:10px solid blue"></canvas>
+<script>
+
+let c= document.getElementById("my");
+let ctx =c.getContext("2d");
+let drawLine = (startX,startY,endX,endY) => {
+ctx.beginPath();
+ctx.moveTo(startX,startY);
+ctx.lineTo(endX,endY);
+ctx.stroke();
+};
+let drawCircle = (cenX,cenY,r,strX,endY) => {       //for head of the imoj's
+ctx.beginPath();
+ctx.arc(cenX,cenY,r,strX,endY);
+ctx.fillStyle ="yellow";
+ctx.fill();
+ctx.stroke();
+};
+drawCircle(250, 250, 150, 0, 2*Math.PI);
+
+let draweyes = (radius) => {
+ drawCircle(300, 200, radius, 0, 2*Math.PI);       //for eyes of the impjis
+ctx.fillStyle="black";
+ctx.fill();
+ drawCircle(200, 200, radius, 0, 2*Math.PI);
+ctx.fillStyle="black";
+ctx.fill();
+};
+
+//for nose
+ let drawNose = (type) => {
+if (type ==="crooked"){
+
+drawLine(250, 225, 200, 275);
+drawLine(200, 275, 250, 275);
+ctx.fillStyle ="pink";
+ctx.fill();               //for nosess of the imojis   
+}
+else{
+drawCircle(250, 250, 20, 0, Math.PI);
+drawLine(230, 250, 250, 225);
+drawLine(270, 250, 250, 225);
+}
+};
+
+
+let drawMouth = (exp) => {
+if(exp === "surprise"){
+
+drawCircle(250, 325, 40, 0, 2*Math.PI);
+ctx.fillStyle ="red";
+ctx.fill();
+}
+ else if(exp === "happy"){
+ drawCircle(250, 300, 40, 0, Math.PI);
+ctx.fillStyle ="red";
+ctx.fill();                                    //for mouth of imoj's happy,surprise,none.
+}
+else{
+drawLine( 200, 325,300,325);
+}
+};
+
+let  getRndInteger = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1) ) + min;
+};
+
+let drawRandomface = () =>{
+let eyeradius = getRndInteger(1,20);
+let nosetype = ["crooked","button"][getRndInteger(0,1)];
+let expt = ["surprise","happy","flat"] [getRndInteger(0,2)];
+draweyes(eyeradius);
+drawNose(nosetype);
+drawMouth(expt);
+};
+drawRandomface();
+
+</script>
+</center>
+</body>
+</html>
+
